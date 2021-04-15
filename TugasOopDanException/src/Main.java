@@ -14,10 +14,11 @@ public class Main {
 
     public static void main(String[] args) {
         String lagi = "y";
+        boolean auto=false;
         do {
 
             Scanner input = new Scanner(System.in);
-            System.out.print("Menu \n1. Persegi\n2. Lingkaran\n3. Persegi Panjang\n4. Segitiga\n5. Kubus\n6. Silinder\n7. Balok\n0. Sudahi saja\n");
+            System.out.print("\nMenu \n1. Persegi\n2. Lingkaran\n3. Persegi Panjang\n4. Segitiga\n5. Kubus\n6. Silinder\n7. Balok\n0. Sudahi saja\n");
             int pilih = 0;
 
             try {
@@ -25,6 +26,7 @@ public class Main {
                 pilih = input.nextInt();
             } catch (Exception error) {
                 System.out.println("Something went wrong code: " + error.getMessage());
+                 auto=true;
             }
             switch (pilih) {
                 case 0:
@@ -37,6 +39,7 @@ public class Main {
                             sisi = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                            auto=true; 
                         } 
                             BangunDatar persegi = new Persegi(sisi);
                             System.out.println("Luas persegi adalah " + persegi.luas() + " Satuan^2");
@@ -51,6 +54,7 @@ public class Main {
                             jari = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                             BangunDatar lingkaran = new Lingkaran(jari);
                             System.out.println("Luas lingkaran adalah " + lingkaran.luas() + " Satuan^2");
@@ -67,6 +71,7 @@ public class Main {
                             lebar = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                             BangunDatar persegiPanjang = new PersegiPanjang(panjang, lebar);
                             System.out.println("Luas persegi panjang adalah " + persegiPanjang.luas() + " Satuan^2");
@@ -83,6 +88,7 @@ public class Main {
                             tinggi = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                             BangunDatar segiTiga = new Segitiga(alas, tinggi);
                             System.out.println("Luas Segitiga adalah " + segiTiga.luas() + " Satuan^2");
@@ -97,6 +103,7 @@ public class Main {
                             sisi = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                             BangunRuang kubus = new Kubus(sisi);
                             System.out.println("Luas kubus adalah " + kubus.luas() + " Satuan^2");
@@ -115,6 +122,7 @@ public class Main {
                             tinggi = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                             BangunRuang silinder = new Silinder(jari, tinggi);
                             System.out.println("Volume silinder adalah " + silinder.volume() + " Satuan^3");
@@ -133,6 +141,7 @@ public class Main {
                             tinggi = input.nextInt();
                         } catch (Exception error) {
                             System.out.println("Errornya " + error.getMessage() + ". Masukkin angka aja Bos!");
+                             auto=true;
                         } 
                         
                             BangunRuang balok = new Balok(panjang, lebar, tinggi);
@@ -143,6 +152,7 @@ public class Main {
                 default:
                 {
                     System.out.println("Salah input");
+                     auto=true;
                     break;
                 }
                     
@@ -150,11 +160,14 @@ public class Main {
             try {
                 System.out.print("Mau lagi ? (y/n)");
                 lagi = input.next();
+                if (lagi.equals("y")) {
+                    auto=false;
+                }
             } catch (Exception error) {
                 System.out.println("Something went wrong code: " + error.getMessage());
             }
 
-        } while (lagi.equals("y"));
+        } while (auto||lagi.equals("y"));
         
     }
 
